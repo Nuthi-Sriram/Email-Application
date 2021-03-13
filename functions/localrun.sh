@@ -1,3 +1,3 @@
 #!/bin/bash
 
-GOOGLE_APPLICATION_CREDENTIALS=./serviceAccountKey.json firebase emulators:start
+GOOGLE_APPLICATION_CREDENTIALS=./serviceAccountKey.json firebase serve

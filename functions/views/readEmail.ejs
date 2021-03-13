@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Read Email | Email Application</title>
+		<%- include('components/meta') %> <%- include('components/link') %>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<%- include('components/sidebar') %>
+			<div class="main-panel">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-minimize">
+							<button
+								id="minimizeSidebar"
+								class="btn btn-fill btn-icon"
+							>
+								<i class="ti-more-alt"></i>
+							</button>
+						</div>
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar bar1"></span>
+								<span class="icon-bar bar2"></span>
+								<span class="icon-bar bar3"></span>
+							</button>
+							<a class="navbar-brand" href="#regularforms"
+								>Read Email</a
+							>
+						</div>
+						<div class="collapse navbar-collapse">
+							<form
+								class="navbar-form navbar-left navbar-search-form"
+							>
+								<button
+									type="button"
+									onclick="markAsUnread()"
+									class="btn btn-fill btn-wd"
+								>
+									Mark as unread
+								</button>
+							</form>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="/signOut">
+										Sign Out
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-6"></div>
+							<!--  end col-md-6  -->
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-content">
+										<fieldset>
+											<div class="form-group">
+												<input
+													type="hidden"
+													name="emailID"
+													id="emailID"
+													value="<%= emailID %>"
+												/>
+												<label
+													class="col-sm-2 control-label"
+													>From</label
+												>
+												<div class="col-sm-10">
+													<p
+														class="form-control-static"
+													>
+														<%= emailData.from %>
+													</p>
+												</div>
+												<label
+													class="col-sm-2 control-label"
+													>Time</label
+												>
+												<div class="col-sm-10">
+													<p
+														class="form-control-static"
+													>
+														<%=
+														emailData.timestamp.toDate()
+														%>
+													</p>
+												</div>
+												<label
+													class="col-sm-2 control-label"
+													>Subject</label
+												>
+												<div class="col-sm-10">
+													<p
+														class="form-control-static"
+													>
+														<%= emailData.subject %>
+													</p>
+												</div>
+												<label
+													class="col-sm-2 control-label"
+													>Body</label
+												>
+												<div class="col-sm-10">
+													<p
+														class="form-control-static"
+													>
+														<%= emailData.message %>
+													</p>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+								<!-- end card -->
+							</div>
+							<!-- end col-md-12 -->
+						</div>
+						<!-- end row -->
+					</div>
+					<%- include('components/footer') %>
+				</div>
+			</div>
+		</div>
+		<%- include('components/scripts') %>
+		<script>
+			$(() => {
+				setTimeout(() => {
+					var payload = {
+						emailID: document.getElementById("emailID").value,
+					};
+					fetch("/markAsRead", {
+						method: "POST",
+						body: new URLSearchParams($.param(payload)),
+					})
+						.then((response) => {
+							if (response.status !== 200) {
+								alert(
+									"Looks like there was a problem. Status Code: " +
+										response.status
+								);
+								return;
+							}
+							response.text().then((data) => {
+								if (data != "Marked as read!") {
+									alert("Could not mark as read!");
+									window.location.reload();
+								}
+							});
+						})
+						.catch((err) => {
+							alert("Fetch Error :-S", err);
+						});
+				}, 3000);
+			});
+			function markAsUnread() {
+				var payload = {
+					emailID: document.getElementById("emailID").value,
+				};
+				fetch("/markAsUnread", {
+					method: "POST",
+					body: new URLSearchParams($.param(payload)),
+				})
+					.then((response) => {
+						if (response.status !== 200) {
+							alert(
+								"Looks like there was a problem. Status Code: " +
+									response.status
+							);
+							return;
+						}
+						response.text().then((data) => {
+							if (data != "Marked as unread!") {
+								alert("Could not mark as unread!");
+								window.location.reload();
+							} else window.location = "/inbox";
+						});
+					})
+					.catch((err) => {
+						alert("Fetch Error :-S", err);
+					});
+			}
+		</script>
+	</body>
+</html>

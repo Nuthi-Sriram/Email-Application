@@ -1,0 +1,43 @@
+<% for(var i=0;i<Object.keys(emailsData).length;i++) { %>
+	<% if (emailsData[i].status == 'unread') {%>
+	<tr>
+		<td>
+			<b><%= emailsData[i].from %></b>
+		</td>
+		<td><b><%= emailsData[i].subject %></b></td>
+		<td><b><%= emailsData[i].timestamp.toDate() %></b></td>
+		<td>
+			<a
+				href="/readEmail?ID=<%= emailsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-email"></i
+			></a>
+			<a
+				href="/deleteInboxEmail?ID=<%= emailsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-trash"></i
+			></a>
+		</td>
+	</tr>
+	<% }%> <% if (emailsData[i].status == 'read') {%>
+	<tr>
+		<td>
+			<%= emailsData[i].from %>
+		</td>
+		<td><%= emailsData[i].subject %></td>
+		<td><%= emailsData[i].timestamp.toDate() %></td>
+		<td>
+			<a
+				href="/readEmail?ID=<%= emailsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-email"></i
+			></a>
+			<a
+				href="/deleteInboxEmail?ID=<%= emailsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-trash"></i
+			></a>
+		</td>
+	</tr>
+	<% }%> <% }%></Object.keys(emailsData).length;i++)
+>

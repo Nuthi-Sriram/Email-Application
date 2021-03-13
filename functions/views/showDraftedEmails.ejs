@@ -1,0 +1,23 @@
+<% for(var i=0;i<Object.keys(emailsData).length;i++) { %>
+	<tr>
+		<td>
+			<%= emailsData[i].to %>
+		</td>
+		<td><%= emailsData[i].subject %></td>
+		<td><%= emailsData[i].timestamp.toDate() %></td>
+		<td>
+			<a
+				href="/readDraftedEmail?ID=<%= emailsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-pencil-alt"></i
+			></a>
+			<a
+				href="/deleteDraftEmail?ID=<%= emailsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-trash"></i
+			></a>
+		</td>
+	</tr>
+
+	<% }%></Object.keys(emailsData).length;i++)
+>

@@ -1,29 +1,53 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
-  "scripts": {
-    "lint": "eslint .",
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
-  },
-  "engines": {
-    "node": "12"
-  },
-  "main": "index.js",
-  "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "firebase-admin": "^9.2.0",
-    "firebase-functions": "^3.11.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.6.0",
-    "eslint-config-google": "^0.14.0",
-    "firebase-functions-test": "^0.2.0"
-  },
-  "private": true
+	"name": "se-lab-email",
+	"version": "1.1.0",
+	"description": "SE Lab Email PWA",
+	"keywords": [
+		"PWA",
+		"services",
+		"email"
+	],
+	"man": [
+		"../README.MD"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aravindvnair99/Email-Application.git"
+	},
+	"author": "Contributors",
+	"contributors": [
+		{
+			"name": "Aravind V Nair",
+			"url": "https://github.com/AravindVNair99"
+		}
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/aravindvnair99/Email-Application/issues"
+	},
+	"homepage": "https://se-lab-email.web.app",
+	"scripts": {
+		"lint": "eslint .",
+		"serve": "firebase serve --only functions",
+		"shell": "firebase functions:shell",
+		"start": "npm run shell",
+		"deploy": "firebase deploy --only functions",
+		"logs": "firebase functions:log"
+	},
+	"engines": {
+		"node": "10"
+	},
+	"dependencies": {
+		"cookie-parser": "^1.4.5",
+		"ejs": "^3.1.6",
+		"express": "^4.17.1",
+		"firebase-admin": "^9.5.0",
+		"firebase-functions": "^3.13.2"
+	},
+	"devDependencies": {
+		"eslint": "^7.21.0",
+		"eslint-plugin-promise": "^4.3.1",
+		"firebase-functions-test": "^0.2.3"
+	},
+	"private": true
 }

@@ -1,0 +1,26 @@
+<% for(var i=0;i<Object.keys(contactsData).length;i++) { %>
+	<tr>
+		<td>
+			<%= contactsData[i].firstName %> <%= contactsData[i].lastName %>
+		</td>
+		<td><%= contactsData[i].DOB %></td>
+		<td><%= contactsData[i].emailAddress %></td>
+		<td>
+			<%= contactsData[i].countryCode %> - <%= contactsData[i].mobile %>
+		</td>
+		<td>
+			<a
+				href="/editContact?ID=<%= contactsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-pencil-alt"></i
+			></a>
+			<a
+				href="/deleteContact?ID=<%= contactsID[i] %>"
+				class="btn btn-simple btn-warning btn-icon edit"
+				><i class="ti-trash"></i
+			></a>
+		</td>
+	</tr>
+
+	<% }%></Object.keys(contactsData).length;i++)
+>

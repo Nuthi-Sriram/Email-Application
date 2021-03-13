@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>User Profile | Email Application</title>
+		<%- include('components/meta') %> <%- include('components/link') %>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<%- include('components/sidebar') %>
+			<div class="main-panel">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-minimize">
+							<button
+								id="minimizeSidebar"
+								class="btn btn-fill btn-icon"
+							>
+								<i class="ti-more-alt"></i>
+							</button>
+						</div>
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar bar1"></span>
+								<span class="icon-bar bar2"></span>
+								<span class="icon-bar bar3"></span>
+							</button>
+							<a class="navbar-brand" href="#userpage"
+								>User Profile</a
+							>
+						</div>
+						<div class="collapse navbar-collapse">
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="/signOut">
+										Sign Out
+									</a>
+								</li>
+								<!-- <li>
+									<a href="#settings" class="btn-rotate">
+										<i class="ti-settings"></i>
+										<p class="hidden-md hidden-lg">
+											Settings
+										</p>
+									</a>
+								</li> -->
+							</ul>
+						</div>
+					</div>
+				</nav>
+
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-4 col-md-5">
+								<div class="card card-user">
+									<div class="card-content">
+										<div class="author">
+											<br /><br /><br />
+											<h4 class="card-title">
+												<%- user.name -%><br />
+												<a href="#"
+													><small
+														><%- user.email
+														-%></small
+													></a
+												>
+											</h4>
+										</div>
+										<p class="description text-center">
+											<%- userProfile.bio -%>
+										</p>
+									</div>
+									<hr />
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-7">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Edit Profile</h4>
+									</div>
+									<div class="card-content">
+										<form
+											method="POST"
+											action="/onUserProfileUpdate"
+										>
+											<div class="row">
+												<div class="col-md-3">
+													<div class="form-group">
+														<button
+															class="btn btn-fill btn-wd"
+															type="button"
+															onclick="location.href='/updatePassword'"
+														>
+															Update Password
+														</button>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<button
+															class="btn btn-fill btn-wd"
+															type="button"
+															onclick="location.href='/deleteProfile'"
+														>
+															Delete profile
+														</button>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="DOB"
+															>Date of
+															Birth</label
+														>
+														<input
+															id="DOB"
+															type="date"
+															name="DOB"
+															class="form-control border-input"
+															autocomplete="bday"
+															required
+															value="<%- userProfile.DOB -%>"
+															autofocus
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="countryCode"
+															>Country Code</label
+														>
+														<input
+															type="tel"
+															name="countryCode"
+															class="form-control border-input"
+															id="countryCode"
+															required
+															pattern="^\+\d{1,3}$"
+															title="Should begin with + and must be a country code"
+															autocomplete="tel-country-code"
+														/>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="mobile"
+															>Mobile
+															number</label
+														>
+														<input
+															type="tel"
+															name="mobile"
+															id="mobile"
+															required
+															class="form-control border-input"
+															pattern="^[6-9]\d{9}$"
+															title="10 digit mobile number"
+															autocomplete="tel-national"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="firstName"
+															>First Name</label
+														>
+														<input
+															type="text"
+															class="form-control border-input"
+															placeholder="First Name"
+															name="firstName"
+															id="firstName"
+															required
+															autocomplete="given-name"
+														/>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="lastName"
+															>Last Name</label
+														>
+														<input
+															type="text"
+															class="form-control border-input"
+															placeholder="Last Name"
+															name="lastName"
+															id="lastName"
+															required
+															autocomplete="family-name"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="address1"
+															>Address Line
+															1</label
+														>
+														<input
+															id="address1"
+															type="text"
+															class="form-control border-input"
+															name="address1"
+															required
+															placeholder="Address Line 1"
+															autocomplete="address-line1"
+															value="<%- userProfile.addressLine1 -%>"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="address2"
+															>Address Line
+															2</label
+														>
+														<input
+															id="address2"
+															type="text"
+															class="form-control border-input"
+															name="address2"
+															required
+															placeholder="Address Line 2"
+															autocomplete="address-line2"
+															value="<%- userProfile.addressLine2 -%>"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="city"
+															>City</label
+														>
+														<input
+															id="city"
+															type="text"
+															class="form-control border-input"
+															name="city"
+															required
+															placeholder="City"
+															autocomplete="address-level2"
+															value="<%- userProfile.city -%>"
+														/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="country"
+															>Country</label
+														>
+														<input
+															id="country"
+															type="text"
+															name="country"
+															class="form-control border-input"
+															placeholder="Country"
+															required
+															autocomplete="country-name"
+															value="<%- userProfile.country -%>"
+														/>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="postalCode"
+															>Postal Code</label
+														>
+														<input
+															id="postalCode"
+															type="text"
+															name="postalCode"
+															class="form-control border-input"
+															placeholder="Postal Code"
+															required
+															autocomplete="postal-code"
+															pattern="^[0-9]{6}$"
+															value="<%- userProfile.postalCode -%>"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="bio"
+															>About Me</label
+														>
+														<input
+															id="bio"
+															type="text"
+															class="form-control border-input"
+															placeholder="Here can be your description"
+															name="bio"
+															maxlength="50"
+															value="<%- userProfile.bio -%>"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="text-center">
+												<button
+													type="submit"
+													class="btn btn-info btn-fill btn-wd"
+												>
+													Update Profile
+												</button>
+											</div>
+											<div class="clearfix"></div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<%- include('components/footer') %>
+			</div>
+		</div>
+		<%- include('components/scripts') %>
+		<script>
+			document.getElementById(
+				"firstName"
+			).value = `<%- user.name -%>`.split(" ")[0];
+			document.getElementById(
+				"lastName"
+			).value = `<%- user.name -%>`.split(" ")[1];
+			document.getElementById(
+				"countryCode"
+			).value = `<%- user.phone_number -%>`.slice(0, -10);
+			document.getElementById(
+				"mobile"
+			).value = `<%- user.phone_number -%>`.slice(-10);
+			var date = new Date();
+			var DD = (date.getDate() < 10 ? "0" : "") + date.getDate();
+			var MM =
+				(date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1);
+			var YYYY = date.getFullYear();
+			document.getElementById("DOB").min =
+				YYYY - 100 + "-" + MM + "-" + DD;
+			document.getElementById("DOB").max =
+				YYYY - 13 + "-" + MM + "-" + DD;
+		</script>
+	</body>
+</html>
