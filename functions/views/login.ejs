@@ -4,7 +4,45 @@
 		<title>Login | Email Application</title>
 		<%- include('components/meta') %> <%- include('components/link') %> <%-
 		include('components/firebaseAuth') %>
-        <link href="/assets/css/style.default.css" rel="stylesheet">
+        <link href="/assets/css/style.default.css" rel="stylesheet" />
+        <style>
+            .navbar {
+                top:0;
+                left:0;
+                width:100%;
+                position:absolute;
+                z-index: 1030;
+            }
+
+            /* .navbar-header {
+                display: block !important;
+                float: none;
+                margin: 17px 15px 17px 0;
+                height: 40px;
+            }
+
+            @media (min-width:768px) {
+                .navbar-header {
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+            }
+
+            @media (max-width:992px) {
+                .navbar-header {
+                    float: none; 
+                }
+            }*/ 
+            
+
+            .panel-signin {
+                width: 450px;
+            }
+
+            .logo img {
+                width:75%;
+            }
+        </style>
 		<script>
 			function toggleSignIn() {
 				if (firebase.auth().currentUser) {
@@ -82,7 +120,7 @@
                 <div class="panel panel-signin">
                     <div class="panel-body">
                         <div class="logo text-center">
-                            <img src="/assets/img/logo-primary.png" alt="Email Attach Logo" >
+                            <img src="/assets/img/logo-email.png" alt="Email Attach Logo" >
                         </div>
                         <br />
                         <h4 class="text-center mb5">Already a Member?</h4>
@@ -97,7 +135,7 @@
                                 name="email"
                                 id="email"
                                 placeholder="Enter email"
-                                class="form-control input-no-border"
+                                class="form-control"
                                 autocomplete="email"
                                 autofocus placeholder="Enter email">
                             </div><!-- input-group -->
@@ -108,9 +146,21 @@
                                 id="password"
                                 placeholder="Password"
                                 autocomplete="current-password"
-                                class="form-control input-no-border" placeholder="Password">
+                                class="form-control" placeholder="Password">
                             </div><!-- input-group -->
-                            
+
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                </div>
+                                <div class="pull-right">
+                                    <button type="button"
+                                    onclick="toggleSignIn()"
+                                    
+                                    id="loginButton" class="btn btn-success">Sign In <i class="fa fa-angle-right ml5"></i></button>
+                                </div>
+                            </div> 
+
                             <div class="clearfix">
                                 <div class="pull-left">
                                     <div class="ckbox ckbox-primary mt10">
@@ -119,10 +169,9 @@
                                     </div>
                                 </div>
                                 <div class="pull-right">
-                                    <button type="button"
-                                    onclick="toggleSignIn()"
-                                    
-                                    id="loginButton" class="btn btn-success">Sign In <i class="fa fa-angle-right ml5"></i></button>
+                                    <div class="forgot mt10">
+                                        <a href="/forgotPassword">Forgot Password?</a>
+                                    </div>
                                 </div>
                             </div>                      
                         </form>

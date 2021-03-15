@@ -5,7 +5,12 @@
 		
 		<%- include('components/meta') %> <%- include('components/link') %> <%-
 		include('components/firebaseAuth') %>
-		<link href="/assets/css/style.default.css" rel="stylesheet">
+		<link href="/assets/css/style.default.css" rel="stylesheet" />
+		<style>
+			.logo img {
+				width:50%;
+			}
+		</style>
 		<script>
 			function toggleSignIn() {
 				if (firebase.auth().currentUser) {
@@ -77,13 +82,13 @@
 		</script>
 	</head>
 
-	<body>
+	<body class="signin">
 		<section>
             
             <div class="panel panel-signup">
                 <div class="panel-body">
                     <div class="logo text-center">
-                        <img src="/assets/img/logo-primary.png" alt="Chain Logo" >
+                        <img src="/assets/img/logo-email.png" alt="Chain Logo" >
                     </div>
                     <br />
                     <h4 class="text-center mb5">Create a new account</h4>
@@ -109,7 +114,7 @@
 						<!-- row -->
                         <br />
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm">
                                 <div class="input-group mb15">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                     <input id="email"
@@ -124,7 +129,7 @@
                             </div>
                         </div><!-- row -->
 						<div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm">
                                 <div class="input-group mb15">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input id="password"
@@ -138,7 +143,7 @@
                             </div>
                         </div><!-- row -->
 						<div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm">
                                 <div class="input-group mb15">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input id="confirmPassword"
