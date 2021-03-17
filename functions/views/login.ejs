@@ -42,6 +42,24 @@
             .logo img {
                 width:75%;
             }
+            .image
+                {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 1152px;
+                    width: 2048px;
+                    z-index: -1;
+                    background-image:
+                        linear-gradient(115deg,
+                        rgba(37, 122, 233, 0.884),
+                        rgba(162, 214, 212, 0.7)
+                        ),
+                    url(assets/img/unsplash_bg.jpg);
+                    background-size:cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
         </style>
 		<script>
 			function toggleSignIn() {
@@ -99,8 +117,9 @@
 	</head>
 
 	<body>
-		<body class="signin">
-        
+        <div class="image">
+        </div>
+		<body class="signin">        
             <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container">
                     <div class="navbar-header">
