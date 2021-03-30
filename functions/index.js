@@ -866,7 +866,9 @@ app.get(
 		return res.redirect("/draftedEmails");
 	}
 );
-
+app.get("/termsConditions", (req, res) => {
+	res.render("termsConditions");
+});
 /*=============================================>>>>>
 
 				= errors =

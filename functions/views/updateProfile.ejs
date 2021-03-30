@@ -8,7 +8,7 @@
 	<body>
 		<div class="wrapper">
 			<%- include('components/sidebar') %>
-			<div class="main-panel">
+			<div class="main-panel"  style="width: calc(100% - 230px);">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-minimize">
@@ -48,7 +48,7 @@
 													<div class="form-group">
 														<label for="DOB"
 															>Date of
-															Birth</label
+															Birth<span style="color:red">*</span></label
 														>
 														<input
 															id="DOB"
@@ -57,14 +57,13 @@
 															class="form-control border-input"
 															autocomplete="bday"
 															required
-															autofocus
 														/>
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="countryCode"
-															>Country Code</label
+															>Country Code<span style="color:red">*</span></label
 														>
 														<input
 															id="countryCode"
@@ -83,7 +82,7 @@
 													<div class="form-group">
 														<label for="mobile"
 															>Mobile
-															number</label
+															number<span style="color:red">*</span></label
 														>
 														<input
 															id="mobile"
@@ -103,7 +102,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="firstName"
-															>First Name</label
+															>First Name<span style="color:red">*</span></label
 														>
 														<input
 															id="firstName"
@@ -119,7 +118,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="lastName"
-															>Last Name</label
+															>Last Name<span style="color:red">*</span></label
 														>
 														<input
 															id="lastName"
@@ -138,7 +137,7 @@
 													<div class="form-group">
 														<label for="address1"
 															>Address Line
-															1</label
+															1<span style="color:red">*</span></label
 														>
 														<input
 															id="address1"
@@ -166,7 +165,6 @@
 															name="address2"
 															placeholder="Address Line 2"
 															autocomplete="address-line2"
-															required
 														/>
 													</div>
 												</div>
@@ -175,7 +173,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="city"
-															>City</label
+															>City<span style="color:red">*</span></label
 														>
 														<input
 															id="city"
@@ -191,7 +189,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="country"
-															>Country</label
+															>Country<span style="color:red">*</span></label
 														>
 														<input
 															id="country"
@@ -207,7 +205,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="postalCode"
-															>Postal Code</label
+															>Postal Code<span style="color:red">*</span></label
 														>
 														<input
 															id="postalCode"
@@ -232,7 +230,7 @@
 															id="bio"
 															type="text"
 															class="form-control border-input"
-															placeholder="Here can be your description"
+															placeholder="Add your description"
 															name="bio"
 														/>
 													</div>
@@ -241,7 +239,7 @@
 											<div class="text-center">
 												<button
 													type="submit"
-													class="btn btn-info btn-fill btn-wd"
+													class="btn btn-primary btn-wd"
 												>
 													Update Profile
 												</button>
@@ -267,7 +265,6 @@
 			document.getElementById("DOB").min =
 				YYYY - 100 + "-" + MM + "-" + DD;
 			document.getElementById("DOB").max =
-				YYYY - 13 + "-" + MM + "-" + DD;
-		</script>
+				YYY
 	</body>
 </html>

@@ -10,6 +10,8 @@
 	<title></title>
 
 	<link href="/assets/css/style.default.css" rel="stylesheet">
+	<link href="/assets/css/morris.css" rel="stylesheet">
+    <link href="/assets/css/select2.css" rel="stylesheet" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -22,31 +24,32 @@
 
 	<header>
 		<div class="headerwrapper">
-			<div class="header-left">
-				<a href="index.html" class="logo">
-					<img src="/assets/img/logo.png" alt="" />
+			<div class="header-left" style="height:60px;">
+				<a href="/inbox" class="logo" style="margin-top: 0px; display:flex">
+					<img src="/assets/img/email.png" alt="" style="width:35px; height:35px;"/>
+					<h6 style="color:white; font-size:11px; padding-left:5px;">Email Application</h6>
 				</a>
 				<div class="pull-right">
-					<a href="messages.html" class="menu-collapse">
+					<a href="" class="menu-collapse">
 						<i class="fa fa-bars"></i>
 					</a>
 				</div>
 			</div><!-- header-left -->
 
 			<div class="header-right">
-
 				<div class="pull-right">
 
+					<%#
 					<form class="form form-search" action="search-results.html">
 						<input type="search" class="form-control" placeholder="Search" />
-					</form>
+					</form> %>
 
 					<div class="btn-group btn-group-list btn-group-notification">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-bell-o"></i>
 							<span class="badge">5</span>
 						</button>
-						<div class="dropdown-menu pull-right">
+						<%# <div class="dropdown-menu pull-right">
 							<a href="messages.html" class="link-right"><i class="fa fa-search"></i></a>
 							<h5>Notification</h5>
 							<ul class="media-list dropdown-list">
@@ -92,10 +95,10 @@
 							<div class="dropdown-footer text-center">
 								<a href="messages.html" class="link">See All Notifications</a>
 							</div>
-						</div><!-- dropdown-menu -->
+						</div><!-- dropdown-menu --> %>
 					</div><!-- btn-group -->
 
-					<div class="btn-group btn-group-list btn-group-messages">
+					<%# <div class="btn-group btn-group-list btn-group-messages">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-envelope-o"></i>
 							<span class="badge">2</span>
@@ -166,13 +169,20 @@
 							<li class="divider"></li>
 							<li><a href="messages.html#"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
 						</ul>
-						<li><a href="/signOut"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
+						<!--<li><a href="/signOut"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>-->
+					</div><!-- btn-group --> %>
+
+					<div class="btn-group btn-group-list btn-group-notification">
+						<button type="button" class="btn btn-default">
+							<i class="glyphicon glyphicon-log-out"></i>
+							<a href="/signOut" style="text-decoration:none; color:white">Sign Out</a>
+						</button>
 					</div><!-- btn-group -->
 
 				</div><!-- pull-right -->
-				<div class="btn-group btn-group-option">
+				<!--<div class="btn-group btn-group-option">
 					<button><li background-color:#2EA620><a href="/signOut"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li></button>
-				</div>
+				</div>-->
 				
 			</div><!-- header-right -->
 			
@@ -184,64 +194,60 @@
 			<div class="leftpanel">
 				<div class="media profile-left">
 					<a class="pull-left profile-thumb" href="">
-						<img class="img-circle" src="/assets/img/photos/profile.png" alt="">
+						<img class="img-circle" src="/assets/img/photos/female.jpg" alt=""> <!-- female.jpg/male.jpg -->
 					</a>
-					<div class="user">
-						<div class="info">
-							<a
-								data-toggle="collapse"
-								href="#collapseExample"
-								class="collapsed"
-							>
-								<span>
-									<%- user.name -%> <br />
-									<%- user.email -%>
-									<b class="caret"></b>
-								</span>
-							</a>
-							<div class="clearfix"></div>
-			
-							<div class="collapse" id="collapseExample">
-								<ul class="nav">
-									<li>
-										<a href="/userProfile">
-											<span class="sidebar-mini"><i class="fa fa-user" aria-hidden="true"></i></span>
-											<span class="sidebar-normal">Edit Profile</span>
-										</a>
-									</li>
-									<li>
-										<!-- <a href="/signOut">
-											<span class="sidebar-mini">SO</span>
-											<span class="sidebar-normal">Sign Out</span>
-										</a> -->
-									</li>
-								</ul>
-							</div>
+					<div class="media-body">
+						
+						<a data-toggle="collapse" data-target="#collapseExample" class="collapsed">
+							<span>
+								<h4 class="media-heading"><%- user.name -%>
+								<small class="text-muted"><%- user.email -%></small>
+								<b class="caret"></b>
+							</span>
+						</a></h4>
+						
+						<div class="clearfix"></div>
+						<div class="collapse" id="collapseExample">
+							<ul class="nav" style="padding-top: 15px;">
+								<li>
+									<a href="/userProfile">
+										<span class="sidebar-mini"><i class="fa fa-user" aria-hidden="true"></i></span>
+										<span class="sidebar-normal">Edit Profile</span>
+									</a>
+								</li>
+								<li>
+									<a href="/signOut">
+										<span class="sidebar-mini"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+										<span class="sidebar-normal">Sign Out</span>
+									</a>
+								</li>
+							</ul>
 						</div>
 					</div>
+					
 				</div><!-- media -->
 
 				
-				<ul class="nav nav-pills nav-stacked">
+				<ul class="nav nav-stacked nav-msg"  style="border-bottom: 0px;">
 					
-					<li class="parent"><a href="messages.html"><i class="fa fa-envelope" aria-hidden="true"></i><span>Email Messages</span></a>
+					<li class="parent"><a href="messages.html" style="text-align: left;"><i class="fa fa-envelope"></i><span> Email Messages</span></a>
 						<ul class="children">
 							<li><a href="/inbox"><i class="glyphicon glyphicon-inbox"></i> Inbox </a></li>
-							<li><a href="/inbox"><i class="glyphicon glyphicon-star"></i>Starred </a></li>
-							<li><a href="/composeEmail"><i class="glyphicon glyphicon-text-color"></i>Compose Mail</a></li>
-							<li><a href="/sentEmails"><i class="glyphicon glyphicon-send"></i>Sent Mail</a></li>
-							<li><a href="/draftedEmails"><i class="glyphicon glyphicon-pencil"></i>Draft</a></li>
-							<li><a href="/inbox"><i class="glyphicon glyphicon-trash"></i>Trash</a></li>
+							<li><a href="/inbox"><i class="glyphicon glyphicon-star"></i> Starred </a></li>
+							<li><a href="/inbox"><i class="glyphicon glyphicon-text-color"></i> Compose Mail</a></li>
+							<li><a href="/inbox"><i class="glyphicon glyphicon-send"></i> Sent Mail</a></li>
+							<li><a href="/inbox"><i class="glyphicon glyphicon-pencil"></i> Draft</a></li>
+							<li><a href="/inbox"><i class="glyphicon glyphicon-trash"></i> Trash</a></li>
 						</ul>
 					</li>
 					
-					<li class="parent"><a href=""> <i class="fa fa-address-book" aria-hidden="true"></i><span>People Directory</span></a>
+					<li class="parent" style="border-bottom:1px solid #e7e7e7;"><a href=""  style="text-align: left;"> <i class="fa fa-address-book"></i><span> People Directory</span></a>
 						<ul class="children">
-							<li><a href="/contacts"><i class="fa fa-file-text"></i>All Contacts</a></li>
-							<li><a href="/addContact"><i class="fa fa-plus" aria-hidden="true"></i>Add Contacts</a></li>
-							<li><a href="/contacts"><i class="fa fa-id-card-o" aria-hidden="true"></i>My Contacts</a></li>
-							<li><a href="/contacts"><i class="fa fa-skype" aria-hidden="true"></i>Skype Contacts</a></li>
-							<li><a href="/contacts"><i class="fa fa-google-plus" aria-hidden="true"></i>Google</a></li>
+							<li><a href="/contacts"><i class="fa fa-file-text"></i> All Contacts</a></li>
+							<li><a href="/inbox"><i class="fa fa-plus"></i> Add Contacts</a></li>
+							<%# <li><a href="/contacts"><i class="fa fa-id-card-o"></i> My Contacts</a></li>
+							<li><a href="/contacts"><i class="fa fa-skype"></i> Skype Contacts</a></li>
+							<li><a href="/contacts"><i class="fa fa-google-plus"></i> Google</a></li> %>
 							
 						</ul>
 					</li>
@@ -257,33 +263,15 @@
 
 	<script src="/assets/js/jquery-1.11.1.min.js"></script>
 	<script src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="/assets/js/bootstrap.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>	
 	<script src="/assets/js/modernizr.min.js"></script>
 	<script src="/assets/js/pace.min.js"></script>
 	<script src="/assets/js/retina.min.js"></script>
 	<script src="/assets/js/jquery.cookies.js"></script>
 
+
 	<script src="/assets/js/custom.js"></script>
-	<script>
-		jQuery(document).ready(function () {
-
-			//highlight rows that are already checked
-			jQuery('.msg-list .ckbox input').each(function () {
-				if (jQuery(this).is(':checked')) {
-					jQuery(this).parents('li').addClass('highlighted');
-				}
-			});
-
-			// highlight/unhighlight rows when checked/unchecked
-			jQuery('.ckbox input').click(function () {
-				if (jQuery(this).is(':checked')) {
-					jQuery(this).parents('li').addClass('highlighted');
-				} else {
-					jQuery(this).parents('li').removeClass('highlighted');
-				}
-			});
-		});
-	</script>
+	<script src="/assets/js/dashboard.js"></script>
 
 </body>
 

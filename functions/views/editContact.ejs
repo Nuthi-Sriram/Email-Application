@@ -8,7 +8,7 @@
 	<body>
 		<div class="wrapper">
 			<%- include('components/sidebar') %>
-			<div class="main-panel">
+			<div class="main-panel" style="width: calc(100% - 230px);">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-minimize">
@@ -32,14 +32,14 @@
 						</div>
 					</div>
 				</nav>
-				<div class="content">
+				<div class="content" style="min-height: calc(100vh - 95px);">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-lg-8 col-md-7">
+							<div class="col-lg col-md">
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title">
-											Add Information
+											Edit Information
 										</h4>
 									</div>
 									<div class="card-content">
@@ -67,7 +67,6 @@
 															class="form-control border-input"
 															autocomplete="bday"
 															value="<%- userProfile.DOB -%>"
-															autofocus
 															required
 														/>
 													</div>
@@ -169,7 +168,7 @@
 											<div class="text-center">
 												<button
 													type="submit"
-													class="btn btn-info btn-fill btn-wd"
+													class="btn btn-primary btn-wd"
 												>
 													Edit Contact Information
 												</button>

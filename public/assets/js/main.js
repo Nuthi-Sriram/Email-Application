@@ -28,6 +28,12 @@ main = {
 				buttonsStyling: false,
 				confirmButtonClass: "btn btn-success btn-fill",
 			});
+		} else if (type == "termsConditions") {
+			swal({
+				title: "Please indicate that you have read and agree to the Terms and Conditions",
+				buttonsStyling: false,
+				confirmButtonClass: "btn btn-success btn-fill",
+			});
 		} else if (type == "wrongPattern") {
 			swal({
 				title:
