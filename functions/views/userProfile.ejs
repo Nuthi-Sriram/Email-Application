@@ -8,54 +8,17 @@
 	<body>
 		<div class="wrapper">
 			<%- include('components/sidebar') %>
-			<div class="main-panel">
+			<div class="main-panel" style="width: calc(100% - 230px);">
 				<nav class="navbar navbar-default">
-					<div class="container-fluid">
-						<div class="navbar-minimize">
-							<button
-								id="minimizeSidebar"
-								class="btn btn-fill btn-icon"
-							>
-								<i class="ti-more-alt"></i>
-							</button>
-						</div>
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar bar1"></span>
-								<span class="icon-bar bar2"></span>
-								<span class="icon-bar bar3"></span>
-							</button>
-							<a class="navbar-brand" href="#userpage"
-								>User Profile</a
-							>
-						</div>
-						<div class="collapse navbar-collapse">
-							<ul class="nav navbar-nav navbar-right">
-								<li>
-									<a href="/signOut">
-										Sign Out
-									</a>
-								</li>
-								<!-- <li>
-									<a href="#settings" class="btn-rotate">
-										<i class="ti-settings"></i>
-										<p class="hidden-md hidden-lg">
-											Settings
-										</p>
-									</a>
-								</li> -->
-							</ul>
-						</div>
-					</div>
+					
 				</nav>
 
 				<div class="content">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-lg-4 col-md-5">
+							<div class="col-lg col-md">
 								<div class="card card-user">
-									<div class="card-content">
+									<div class="card-content" style="min-height: 100px;">
 										<div class="author">
 											<br /><br /><br />
 											<h4 class="card-title">
@@ -75,7 +38,7 @@
 									<hr />
 								</div>
 							</div>
-							<div class="col-lg-8 col-md-7">
+							<div class="col-lg col-md">
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title">Edit Profile</h4>
@@ -89,7 +52,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<button
-															class="btn btn-fill btn-wd"
+															class="btn btn-primary btn-wd"
 															type="button"
 															onclick="location.href='/updatePassword'"
 														>
@@ -100,7 +63,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<button
-															class="btn btn-fill btn-wd"
+															class="btn btn-danger btn-wd"
 															type="button"
 															onclick="location.href='/deleteProfile'"
 														>
@@ -112,7 +75,7 @@
 													<div class="form-group">
 														<label for="DOB"
 															>Date of
-															Birth</label
+															Birth<span style="color:red">*</span></label
 														>
 														<input
 															id="DOB"
@@ -131,7 +94,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="countryCode"
-															>Country Code</label
+															>Country Code<span style="color:red">*</span></label
 														>
 														<input
 															type="tel"
@@ -149,7 +112,7 @@
 													<div class="form-group">
 														<label for="mobile"
 															>Mobile
-															number</label
+															number<span style="color:red">*</span></label
 														>
 														<input
 															type="tel"
@@ -168,7 +131,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="firstName"
-															>First Name</label
+															>First Name<span style="color:red">*</span></label
 														>
 														<input
 															type="text"
@@ -184,7 +147,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="lastName"
-															>Last Name</label
+															>Last Name<span style="color:red">*</span></label
 														>
 														<input
 															type="text"
@@ -203,7 +166,7 @@
 													<div class="form-group">
 														<label for="address1"
 															>Address Line
-															1</label
+															1<span style="color:red">*</span></label
 														>
 														<input
 															id="address1"
@@ -230,7 +193,6 @@
 															type="text"
 															class="form-control border-input"
 															name="address2"
-															required
 															placeholder="Address Line 2"
 															autocomplete="address-line2"
 															value="<%- userProfile.addressLine2 -%>"
@@ -242,7 +204,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="city"
-															>City</label
+															>City<span style="color:red">*</span></label
 														>
 														<input
 															id="city"
@@ -259,7 +221,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="country"
-															>Country</label
+															>Country<span style="color:red">*</span></label
 														>
 														<input
 															id="country"
@@ -276,7 +238,7 @@
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="postalCode"
-															>Postal Code</label
+															>Postal Code<span style="color:red">*</span></label
 														>
 														<input
 															id="postalCode"
@@ -302,7 +264,7 @@
 															id="bio"
 															type="text"
 															class="form-control border-input"
-															placeholder="Here can be your description"
+															placeholder="Add your description"
 															name="bio"
 															maxlength="50"
 															value="<%- userProfile.bio -%>"
@@ -313,7 +275,7 @@
 											<div class="text-center">
 												<button
 													type="submit"
-													class="btn btn-info btn-fill btn-wd"
+													class="btn btn-success btn-wd"
 												>
 													Update Profile
 												</button>

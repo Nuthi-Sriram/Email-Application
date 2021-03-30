@@ -10,6 +10,23 @@
 			.logo img {
 				width:50%;
 			}
+			.image
+            {
+                position:fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: -1;
+                background-image:
+				linear-gradient(115deg,
+                    rgba(37, 122, 233, 0.55),
+                    rgba(75, 144, 235, 0.7)
+                    ),
+                url(assets/img/3.jpg);
+                background-size:cover;
+                background:position 100%;
+            }
 		</style>
 		<script>
 			function toggleSignIn() {
@@ -42,6 +59,11 @@
 						document.getElementsByName("confirmPassword")[0].value
 					) {
 						main.showSwal("passwordNoMatch");
+						return;
+					}
+					if (document.getElementById("agree").checked == false) {
+						// main.showSwal("termsConditions");
+						main.showSwal("Please indicate that you have read and agree to the Terms and Conditions");
 						return;
 					}
 					firebase
@@ -81,7 +103,9 @@
 			window.onload = initApp();
 		</script>
 	</head>
-
+	<body>
+		<div class="image">
+        </div>
 	<body class="signin">
 		<section>
             
@@ -96,7 +120,7 @@
                     
                     <div class="mb30"></div>
                     
-                    <form action="signin.html" method="post">
+                    <form action="/login" method="post">
                         <!-- <div class="row">
                             <div class="col-sm-6">
                                 <div class="input-group mb15">
@@ -162,7 +186,7 @@
                             <div class="pull-left">
                                 <div class="ckbox ckbox-primary mt5">
                                     <input type="checkbox" id="agree" value="1">
-                                    <label for="agree">I agree with <a href="/register">Terms and Conditions</a></label>
+                                    <label for="agree">I agree with <a href="/termsConditions">Terms and Conditions</a></label>
                                 </div>
                             </div>
                             <div class="pull-right">
@@ -188,4 +212,5 @@
         <script src="/assets/js/custom.js"></script>
 		<%- include('components/scripts') %>
 	</body>
+</body>
 </html>

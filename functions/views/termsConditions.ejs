@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Update Password | Email Application</title>
+		<title>Forgot Password | Email Application</title>
 		
 		<%- include('components/meta') %> <%- include('components/link') %> <%-
 		include('components/firebaseAuth') %>
 		<link href="/assets/css/style.default.css" rel="stylesheet" />
 		<style>
-			.panel-signup {
-				width:450px;
-			}
 			.logo img {
 				width:50%;
 			}
@@ -44,39 +41,31 @@
                         <img src="/assets/img/logo-email.png" alt="Chain Logo" >
                     </div>
                     <br />
-                    <h4 class="text-center mb5">Update Password</h4>
-                    <p class="text-center">Please enter your email below</p>
+                    <h4 class="text-center mb5">Terms and Conditions</h4>
                     
                     <div class="mb30"></div>
                     
-                    <form action="/passwordReset" method="post">
+                    <form action="/termsConditions" method="post">
                         <br />
                         <div class="row">
                             <div class="col-sm">
-                                <div class="input-group mb15">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input id="email"
-									type="email"
-									placeholder="username@email.com"
-									class="form-control"
-									name="email"
-									autocomplete="email"
-									required
-									autofocus>
-                                </div><!-- input-group -->
+                                <h6>We know it’s tempting to skip these Terms and Services, but it’s important to establish what you can expect from us as you use our Email Application services, and what we expect from you.</h6>
+                                <ul>
+                                    <br><li>In order for You to use the Services, Email Application will require You to provide specific information about Yourself.</li><br>
+                                    <li>You agree to provide true, accurate and complete information.</li><br>
+                                    <li>You shall be responsible for maintaining the confidentiality of Your account and password.</li><br>
+                                    <li>You shall be responsible for any and all transactions by users given access to such account or password and any and all consequences of use or misuse of such account and password.</li><br>
+                                    <li>You can also end your relationship with us at any time by closing your Email Account.</li><br>
+                                    <li>The Email Application shall not disclose, transfer, assign or otherwise communicate to any third party the End-User Data, even for storage purposes, without Your previous authorization.</li>
+                                </ul>
                             </div>
                         </div><!-- row -->
                         <br />
-                        <div class="clearfix">
-                            <div class="pull-right">
-                                <button type="submit" class="btn btn-success">Verify <i class="fa fa-angle-right ml5"></i></button>
-                            </div>
-                        </div>
                     </form>
                     
                 </div><!-- panel-body -->
                 <div class="panel-footer">
-                    <a href="/register" class="btn btn-primary btn-block">Not yet a Member? Create Account Now</a>
+                    <a href="/register" class="btn btn-primary btn-block"><i class="fa fa-angle-left ml5"></i> Back to Registration page</a>
                 </div><!-- panel-footer -->
             </div><!-- panel -->
 
@@ -90,38 +79,6 @@
 
         <script src="/assets/js/custom.js"></script>
 		<%- include('components/scripts') %>
-		<script type="text/javascript">
-			$("#email").change(() => {
-				var payload = {
-					checkEmail: document.getElementById("email").value,
-				};
-				fetch("/userQuery", {
-					method: "POST",
-					body: new URLSearchParams($.param(payload)),
-				})
-					.then((response) => {
-						if (response.status !== 200) {
-							alert(
-								"Looks like there was a problem. Status Code: " +
-									response.status
-							);
-							return;
-						}
-						response.text().then((data) => {
-							if (data != "User exists") {
-								document.getElementById("email").value = "";
-								alert(
-									"User does not exist! Please recheck email."
-								);
-								window.location.reload();
-							}
-						});
-					})
-					.catch((err) => {
-						alert("Fetch Error :-S", err);
-					});
-			});
-		</script>
 	</body>
 </body>
 </html>
