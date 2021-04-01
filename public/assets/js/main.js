@@ -37,7 +37,7 @@ main = {
 		} else if (type == "wrongPattern") {
 			swal({
 				title:
-					"Password must contain at least one number, one upper case, one lower case, and at least 8 or more characters",
+					"Password must contain at least one number, one upper case, one lower case, at least 8, and atmost 128 characters",
 				buttonsStyling: false,
 				confirmButtonClass: "btn btn-success btn-fill",
 			});

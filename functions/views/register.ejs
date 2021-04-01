@@ -45,7 +45,7 @@
 						main.showSwal("emailInvalid");
 						return;
 					}
-					patt = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+					patt = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,128}/;
 					if (
 						!patt.test(
 							document.getElementsByName("password")[0].value
@@ -176,7 +176,7 @@
 									class="form-control"
 									name="confirmPassword"
 									autocomplete="new-password"
-									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,128}"
 									required>
                                 </div><!-- input-group -->
                             </div>
