@@ -160,6 +160,14 @@ app.get("/uploadKYC", (req, res) => {
 	}
 });
 
+app.get("/displayKYC", (req, res) => {
+	if (req.cookies.__session) {
+		res.render("displayKYC");
+	} else {
+		res.render("login");
+	}
+});
+
 app.get("/offline", (req, res) => {
 	res.render("offline");
 });
