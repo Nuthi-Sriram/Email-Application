@@ -154,7 +154,7 @@ app.get("/", (req, res) => {
 
 app.get("/uploadKYC", (req, res) => {
 	if (req.cookies.__session) {
-		res.render("uploadKYC");
+		res.redirect("/uploadKYC");
 	} else {
 		res.render("login");
 	}
@@ -162,7 +162,7 @@ app.get("/uploadKYC", (req, res) => {
 
 app.get("/displayKYC", (req, res) => {
 	if (req.cookies.__session) {
-		res.render("displayKYC");
+		res.redirect("/displayKYC");
 	} else {
 		res.render("login");
 	}

@@ -1,89 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Server Error</title>
-
-		<style media="screen">
-			body {
-				background: #eceff1;
-				color: rgba(0, 0, 0, 0.87);
-				font-family: Roboto, Helvetica, Arial, sans-serif;
-				margin: 0;
-				padding: 0;
+		<title>500 | Email Application</title>
+		
+		<%- include('../components/meta') %> <%- include('../components/link') %> <%-
+		include('../components/firebaseAuth') %>
+		<link href="/assets/css/style.default.css" rel="stylesheet" />
+		<style>
+			.logo img {
+				width:50%;
 			}
-			#message {
-				background: white;
-				max-width: 360px;
-				margin: 100px auto 16px;
-				padding: 32px 24px 16px;
-				border-radius: 3px;
-			}
-			#message h3 {
-				color: #888;
-				font-weight: normal;
-				font-size: 16px;
-				margin: 16px 0 12px;
-			}
-			#message h2 {
-				color: #ffa100;
-				font-weight: bold;
-				font-size: 16px;
-				margin: 0 0 8px;
-			}
-			#message h1 {
-				font-size: 22px;
-				font-weight: 300;
-				color: rgba(0, 0, 0, 0.6);
-				margin: 0 0 16px;
-			}
-			#message p {
-				line-height: 140%;
-				margin: 16px 0 24px;
-				font-size: 14px;
-			}
-			#message a {
-				display: block;
-				text-align: center;
-				background: #039be5;
-				text-transform: uppercase;
-				text-decoration: none;
-				color: white;
-				padding: 16px;
-				border-radius: 4px;
-			}
-			#message,
-			#message a {
-				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-					0 1px 2px rgba(0, 0, 0, 0.24);
-			}
-			#load {
-				color: rgba(0, 0, 0, 0.4);
-				text-align: center;
-				font-size: 13px;
-			}
-			@media (max-width: 600px) {
-				body,
-				#message {
-					margin-top: 0;
-					background: white;
-					box-shadow: none;
-				}
-				body {
-					border-top: 16px solid #ffa100;
-				}
-			}
+			.image
+            {
+                position:fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: -1;
+                background-image:
+                        linear-gradient(115deg,
+                        rgba(37, 122, 233, 0.87),
+                        rgba(162, 214, 212, 0.7)
+                        ),
+                    url(assets/img/unsplash_bg.jpg);
+                    background-size:cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+            }
 		</style>
 	</head>
 	<body>
-		<div id="message">
-			<h2>500</h2>
-			<h1>Server Error</h1>
-			<p>
-				We have been notified and this shall be looked into. Sorry for
-				the inconvenience.
-			</p>
-		</div>
+		<div class="image">
+        </div>
+	<body class="signup">
+		<section>
+            
+            <div class="panel panel-signin">
+                <div class="panel-body">
+                    <div class="logo text-center">
+                        <img src="/assets/img/logo-email.png" alt="Chain Logo" >
+                    </div>
+                    <br />
+                    <h3 class="text-center mb5">500</h3>
+                    
+                    <div class="mb30"></div>
+                    
+                    <form action="/termsConditions" method="post">
+                        <br />
+                        <div class="row">
+                            <div class="col-sm">
+								<h2 style="text-align: center;">Server Error</h2>
+								<p>
+									We have been notified and this shall be looked into. Sorry for the inconvenience.
+								</p>
+                            </div>
+                        </div><!-- row -->
+                        <br />
+                    </form>
+                    
+                </div><!-- panel-body -->
+            </div><!-- panel -->
+
+			<script src="/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/pace.min.js"></script>
+        <script src="/assets/js/retina.min.js"></script>
+        <script src="/assets/js/jquery.cookies.js"></script>
+
+        <script src="/assets/js/custom.js"></script>
+		<%- include('../components/scripts') %>
 	</body>
+</body>
 </html>
