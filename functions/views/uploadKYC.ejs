@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload KYC | Email Application</title>
+    <!-- <%- include('components/meta') %>
+        <%- include('components/link') %> -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <%- include('components/firebaseAuth') %> 
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>  -->
+
+
+
+</head>
+
+<body>
+    
+    <p>Click on the "Choose File" button to upload a file:</p>
+
+    <!-- <form action="/action_page.php">
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+</form> -->
+
+    <input type="file" id="fileButton" name="fileButton" multiple="" accept="image/*">
+
+</body>
+<!-- <script src="upload.js"></script> -->
+<script>
+    // console.log("uploaind test")
+fileButton.addEventListener('change', function (e) {
+    for (let i = 0; i < e.target.files.length; i++) {
+        let imageFile = e.target.files[i];
+
+        let storageRef = firebase.storage().ref("Images/" + imageFile.name);
+
+        let task = storageRef.put(imageFile);
+
+        task.on('state_changed', function progress(snapshot) {
+            let percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+            console.log("upload is " + percentage + " %done");
+
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED:
+                    console.log("upload is paused");
+                    break;
+                case firebase.storage.TaskState.RUNNING:
+                    console.log("upload is running");
+                    break;
+            }
+        })
+    }
+})
+
+</script>
+
+</html>

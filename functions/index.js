@@ -1,4 +1,5 @@
 const functions = require("firebase-functions"),
+	storage=require('@google-cloud/storage'),
 	express = require("express"),
 	app = express(),
 	bodyParser = require("body-parser"),
@@ -150,6 +151,23 @@ app.get("/", (req, res) => {
 		res.render("login");
 	}
 });
+
+app.get("/uploadKYC", (req, res) => {
+	if (req.cookies.__session) {
+		res.render("uploadKYC");
+	} else {
+		res.render("login");
+	}
+});
+
+app.get("/displayKYC", (req, res) => {
+	if (req.cookies.__session) {
+		res.render("displayKYC");
+	} else {
+		res.render("login");
+	}
+});
+
 app.get("/offline", (req, res) => {
 	res.render("offline");
 });
