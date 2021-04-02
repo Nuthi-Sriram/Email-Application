@@ -3,6 +3,8 @@
 	<head>
 		<title>User Profile | Email Application</title>
 		<%- include('components/meta') %> <%- include('components/link') %>
+		<%- include('components/firebaseAuth') %>
+		
 	</head>
 
 	<body>
@@ -12,7 +14,6 @@
 				<nav class="navbar navbar-default">
 					
 				</nav>
-
 				<div class="content">
 					<div class="container-fluid">
 						<div class="row">
@@ -142,6 +143,7 @@
 															required
 															autocomplete="given-name"
 														/>
+
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -272,6 +274,23 @@
 													</div>
 												</div>
 											</div>
+
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<p>Click on the "Choose File" button to upload a file:</p>
+														<input style="float:right" type="file" id="fileButton" name="fileButton" multiple="" accept="image/*">
+													</div>
+												</div>
+											</div>
+
+											<table   id="List">
+												<tbody>
+										
+												</tbody>
+											</table>
+
 											<div class="text-center">
 												<button
 													type="submit"
@@ -293,6 +312,72 @@
 		</div>
 		<%- include('components/scripts') %>
 		<script>
+			// console.log("uploading test")
+			
+			fileButton.addEventListener('change', function (e) {
+				for (let i = 0; i < e.target.files.length; i++) {
+					let imageFile = e.target.files[i];
+					
+					let storageRef = firebase.storage().ref("Images/" +  `<%- user.email -%>` + "/" + imageFile.name);
+					
+					// let storageRef = firebase.storage().ref("Images/" +  <%- user.email -%> + "/" + imageFile.name);
+					let task = storageRef.put(imageFile);
+		
+					task.on('state_changed', function progress(snapshot) {
+						let percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+						console.log("upload is " + percentage + " %done");
+		
+						switch (snapshot.state) {
+							case firebase.storage.TaskState.PAUSED:
+								console.log("upload is paused");
+								break;
+							case firebase.storage.TaskState.RUNNING:
+								console.log("upload is running");
+								break;
+						}
+					})
+				}
+			})
+		
+		</script>
+
+
+
+<script>
+    var storage=firebase.storage();
+    var storageRef=storage.ref();
+    $('#List').find('tbody').html('');
+    var i=0;
+	// var path="Images/" +  `<%- user.email -%>` + "/";
+	// console.log(path);
+    storageRef.child("Images/" +  `<%- user.email -%>` + "/").listAll().then(function(result){
+        result.items.forEach(function(imageRef){
+            // console.log("Image reference"+imageRef.toString());
+
+            i++;
+            displayImage(i, imageRef);
+        });
+    });
+
+    function displayImage(row, images){
+        images.getDownloadURL().then(function(url){
+            console.log(url);
+
+            let new_html='';
+            new_html+='<tr>';
+            new_html+='<td>';
+            new_html+=row;
+            new_html+='</td>';
+            new_html+='<td>';
+            new_html+='<img  src="'+url+'"width="300px" style="float: right">';    
+            new_html+='</td>';
+            new_html+='</tr>';  
+            $('#List').find('tbody').append(new_html);
+        })
+
+    }
+</script>
+		<script>
 			document.getElementById(
 				"firstName"
 			).value = `<%- user.name -%>`.split(" ")[0];
@@ -313,7 +398,7 @@
 			document.getElementById("DOB").min =
 				YYYY - 100 + "-" + MM + "-" + DD;
 			document.getElementById("DOB").max =
-				YYYY - 10 + "-" + MM + "-" + DD;
+				YYYY - 13 + "-" + MM + "-" + DD;
 		</script>
 	</body>
 </html>
