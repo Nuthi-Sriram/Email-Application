@@ -202,11 +202,11 @@
 							<span>
 								<h4 class="media-heading"><%- user.name -%>
 								<small class="text-muted"><%- user.email -%></small>
-								<b class="caret"></b>
+								<%# <b class="caret"></b> %>
 							</span>
 						</a></h4>
 						
-						<div class="clearfix"></div>
+						<%# <div class="clearfix"></div>
 						<div class="collapse" id="collapseExample">
 							<ul class="nav" style="padding-top: 15px;">
 								<li>
@@ -222,7 +222,7 @@
 									</a>
 								</li>
 							</ul>
-						</div>
+						</div> %>
 					</div>
 					
 				</div><!-- media -->
@@ -230,6 +230,14 @@
 				
 				<ul class="nav nav-stacked nav-msg"  style="border-bottom: 0px;">
 					
+					<li class="parent" style="border-bottom:1px solid #e7e7e7;"><a href=""  style="text-align: left;"> <i class="fa fa-user" aria-hidden="true"></i><span> Manage Profile</span></a>
+						<ul class="children">
+							<li><a href="/userProfile"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Profile</a></li>
+							<li><a href="/inbox"><i class="fa fa-upload" aria-hidden="true"></i>Upload KYC</a></li>
+							<li><a href="/inbox"><i class="fa fa-eye" aria-hidden="true"></i></i>Display KYC</a></li>
+						</ul>
+					</li>
+
 					<li class="parent"><a href="messages.html" style="text-align: left;"><i class="fa fa-envelope"></i><span> Email Messages</span></a>
 						<ul class="children">
 							<li><a href="/inbox"><i class="glyphicon glyphicon-inbox"></i> Inbox </a></li>
@@ -252,12 +260,12 @@
 						</ul>
 					</li>
 
-					<li class="parent" style="border-bottom:1px solid #e7e7e7;"><a href=""  style="text-align: left;"> <i class="fa fa-upload" aria-hidden="true"></i><span> Upload KYC Documents</span></a>
+					<%# <li class="parent" style="border-bottom:1px solid #e7e7e7;"><a href=""  style="text-align: left;"> <i class="fa fa-upload" aria-hidden="true"></i><span> Upload KYC Documents</span></a>
 						<ul class="children">
 							<li><a href="/uploadKYC"><i class="fa fa-picture-o" aria-hidden="true"></i>Upload KYC</a></li>
 							<li><a href="/displayKYC"><i class="fa fa-eye" aria-hidden="true"></i></i>Display KYC</a></li>
 						</ul>
-					</li>
+					</li> %>
 				</ul>
 
 			</div><!-- leftpanel -->
