@@ -6,16 +6,16 @@
     <!-- <%- include('components/meta') %>
         <%- include('components/link') %> -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <%- include('components/firebaseAuth') %> 
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script> -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>  -->
+    <%- include('components/firebaseAuth') %>
+        <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script> -->
+        <!-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-storage.js"></script>  -->
 
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js" integrity="sha512-vRqhAr2wsn+/cSsyz80psBbCcqzz2GTuhGk3bq3dAyytz4J/8XwFqMjiAGFBj+WM95lHBJ9cDf87T3P8yMrY7A==" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    
+
     <p>Click on the "Choose File" button to upload a file:</p>
 
     <!-- <form action="/action_page.php">
@@ -29,29 +29,72 @@
 <!-- <script src="upload.js"></script> -->
 <script>
     // console.log("uploaind test")
-fileButton.addEventListener('change', function (e) {
-    for (let i = 0; i < e.target.files.length; i++) {
-        let imageFile = e.target.files[i];
 
-        let storageRef = firebase.storage().ref("Images/" + imageFile.name);
+    
+    fileButton.addEventListener('change', function (e) {
+        for (let i = 0; i < e.target.files.length; i++) {
+            let imageFile = e.target.files[i];
+            //  console.log(firebase.auth().currentUser.email);
+            // FirebaseUser userobject = FirebaseAuth.getInstance().getCurrentUser();
+            // String emailobject = userobject.getEmail();
+            // console.log(emailobject);
+            // firebase.auth().onAuthStateChanged(function (user) {
+            //     if (user) {
+            //         // User is signed in.
+            //         console.log("user singed in");
+            //     } else {
+            //         // No user is signed in.
+            //         console.log("user not singed in");
+            //     }
+            // });
+            
+            
+			
+			// console.log(firebase.auth());
+            // console.log(firebase.auth().currentUser);
+            // firebase.auth().onAuthStateChanged(function(user) {
+            //     if (user) {
+            //         // User is signed in.
+            //         console.log(firebase.auth());
 
-        let task = storageRef.put(imageFile);
+            //     } else {
+            //         // No user is signed in.
+            //     }
+            //     });
+            
+            // firebase.auth().onAuthStateChanged(function(user) {
+            //     if (user) {
+            //         // User is signed in.
+            //         console.log(user.uid);
+            //     } else {
+            //         // No user is signed in.
+            //         console.log("user not logged in")
+            //         console.log(user.id)    
+            //     }
+            //     });
+            let user;
 
-        task.on('state_changed', function progress(snapshot) {
-            let percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-            console.log("upload is " + percentage + " %done");
+            auth.onAuthStateChanged(u => user = u);
+            console.log(user);
+            let storageRef = firebase.storage().ref("Images/" + firebase.auth().uid + "/" + imageFile.name);
 
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED:
-                    console.log("upload is paused");
-                    break;
-                case firebase.storage.TaskState.RUNNING:
-                    console.log("upload is running");
-                    break;
-            }
-        })
-    }
-})
+            let task = storageRef.put(imageFile);
+
+            task.on('state_changed', function progress(snapshot) {
+                let percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                console.log("upload is " + percentage + " %done");
+
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED:
+                        console.log("upload is paused");
+                        break;
+                    case firebase.storage.TaskState.RUNNING:
+                        console.log("upload is running");
+                        break;
+                }
+            })
+        }
+    })
 
 </script>
 
