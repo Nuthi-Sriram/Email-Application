@@ -43,7 +43,9 @@
 		"ejs": "^3.1.6",
 		"express": "^4.17.1",
 		"firebase-admin": "^9.5.0",
-		"firebase-functions": "^3.13.2"
+		"firebase-functions": "^3.13.2",
+		"https": "^1.0.0",
+		"querystring": "^0.2.1"
 	},
 	"devDependencies": {
 		"eslint": "^7.21.0",
