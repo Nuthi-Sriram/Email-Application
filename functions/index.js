@@ -188,6 +188,10 @@ app.get("/payForm", (req, res) => {
   
   
 	  checksum_lib.genchecksum(params, config.PaytmConfig.key, function (err, checksum) {
+
+			if(err){
+				console.log(err);
+			}
 		  var txn_url = "https://securegw-stage.paytm.in/theia/processTransaction"; // for staging
 		  // var txn_url = "https://securegw.paytm.in/theia/processTransaction"; // for production
   
@@ -231,7 +235,9 @@ app.get("/payForm", (req, res) => {
 	   var params = {"MID": config.PaytmConfig.mid, "ORDERID": post_data.ORDERID};
   
 	   checksum_lib.genchecksum(params, config.PaytmConfig.key, function (err, checksum) {
-  
+			if(err){
+				console.log(err);
+			}
 		 params.CHECKSUMHASH = checksum;
 		 post_data = 'JsonData='+JSON.stringify(params);
   
@@ -259,7 +265,7 @@ app.get("/payForm", (req, res) => {
 			 console.log('S2S Response: ', response, "\n");
   
 			 var _result = JSON.parse(response);
-			   if(_result.STATUS == 'TXN_SUCCESS') {
+			   if(_result.STATUS === 'TXN_SUCCESS') {
 				   res.send('payment sucess')
 			   }else {
 				   res.send('payment failed')

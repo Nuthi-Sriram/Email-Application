@@ -13,11 +13,11 @@ function paramsToString(params, mandatoryflag) {
   tempKeys.forEach(function (key) {
   var n = params[key].includes("REFUND"); 
    var m = params[key].includes("|");  
-        if(n == true )
+        if(n === true )
         {
           params[key] = "";
         }
-          if(m == true)
+          if(m === true)
         {
           params[key] = "";
         }  
@@ -35,6 +35,9 @@ function paramsToString(params, mandatoryflag) {
 function genchecksum(params, key, cb) {
   var data = paramsToString(params);
 crypt.gen_salt(4, function (err, salt) {
+    if(err){
+      console.log(err);
+    }
     var sha256 = crypto.createHash('sha256').update(data + salt).digest('hex');
     var check_sum = sha256 + salt;
     var encrypted = crypt.encrypt(check_sum, key);
@@ -44,6 +47,10 @@ crypt.gen_salt(4, function (err, salt) {
 function genchecksumbystring(params, key, cb) {
 
   crypt.gen_salt(4, function (err, salt) {
+
+    if(err){
+      console.log(err);
+    }
     var sha256 = crypto.createHash('sha256').update(params + '|' + salt).digest('hex');
     var check_sum = sha256 + salt;
     var encrypted = crypt.encrypt(check_sum, key);
@@ -95,6 +102,10 @@ function verifychecksumbystring(params, key,checksumhash) {
 function genchecksumforrefund(params, key, cb) {
   var data = paramsToStringrefund(params);
 crypt.gen_salt(4, function (err, salt) {
+
+    if(err){
+      console.log(err);
+    }
     var sha256 = crypto.createHash('sha256').update(data + salt).digest('hex');
     var check_sum = sha256 + salt;
     var encrypted = crypt.encrypt(check_sum, key);
@@ -109,7 +120,7 @@ function paramsToStringrefund(params, mandatoryflag) {
   tempKeys.sort();
   tempKeys.forEach(function (key) {
    var m = params[key].includes("|");  
-          if(m == true)
+          if(m === true)
         {
           params[key] = "";
         }  
