@@ -2,9 +2,6 @@
 
 serviceAccountKey.json
 
-#paytm keys
-config.js
-
 # Firebase Cache
 
 .firebase/
