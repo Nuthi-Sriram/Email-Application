@@ -33,7 +33,13 @@
 				if (firebase.auth().currentUser) {
 					firebase.auth().signOut();
 				} else {
-					var patt = /^([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*(@email.com)$/;
+					var patt = /^([a-z]|[A-Z])([a-z]|[A-Z]|[0-9]|["_"][^"_""""."]|["."][^".""""_"])*(@email.com)$/;
+					if (
+						/["_"]["_""."]+|["."][".""_"]+/.test(document.getElementsByName("email")[0].value)
+					) {
+						main.showSwal("Continuous underscores or periods are not allowed");
+						return;
+					}
 					if (
 						document.getElementsByName("email")[0].value.length <
 							11 ||

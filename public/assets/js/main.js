@@ -22,6 +22,12 @@ main = {
 				timer: 1250,
 				showConfirmButton: false,
 			});
+		} else if (type == "Continuous underscores or periods are not allowed") {
+			swal({
+				title: "Continuous underscores or periods are not allowed",
+				buttonsStyling: false,
+				confirmButtonClass: "btn btn-success btn-fill",
+			});
 		} else if (type == "emailInvalid") {
 			swal({
 				title: "Should start with letter and end with @email.com",
