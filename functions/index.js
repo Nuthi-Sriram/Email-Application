@@ -1016,9 +1016,35 @@ app.get(
 		return res.redirect("/draftedEmails");
 	}
 );
+
 app.get("/termsConditions", (req, res) => {
 	res.render("termsConditions");
 });
+
+app.get("/viewProfile", checkCookieMiddleware, checkValidUser, (req, res) => {
+	db.collection("users")
+		.doc(req.decodedClaims.uid)
+		.get()
+		.then((doc) => {
+			if (!doc.exists) {
+				console.log("No such document!");
+				return res.redirect("/login");
+			} else {
+				user = Object.assign({}, req.decodedClaims);
+				userProfile = Object.assign({}, doc.data());
+				console.log(user);
+				return res.render("viewProfile", {
+					userProfile,
+					user,
+				});
+			}
+		})
+		.catch((err) => {
+			console.log("Error getting document", err);
+			res.redirect("/login");
+		});
+});
+
 /*=============================================>>>>>
 
 				= errors =
