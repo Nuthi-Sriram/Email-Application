@@ -411,6 +411,7 @@ app.post(
 				console.log("Successfully updated user", userRecord.toJSON());
 				db.collection("users").doc(userRecord.uid).set({
 					DOB: req.body.DOB,
+					gender: req.body.gender,
 					addressLine1: req.body.address1,
 					addressLine2: req.body.address2,
 					city: req.body.city,
@@ -430,6 +431,8 @@ app.get("/updateProfile", checkCookieMiddleware, (req, res) => {
 		res.redirect("/inbox");
 	} else {
 		user = Object.assign({}, req.decodedClaims);
+		userProfile=user;
+		userProfile.gender='';
 		res.render("updateProfile", {
 			user,
 		});
@@ -448,6 +451,7 @@ app.post("/onUpdateProfile", checkCookieMiddleware, (req, res) => {
 			console.log("Successfully updated user", userRecord.toJSON());
 			db.collection("users").doc(userRecord.uid).set({
 				DOB: req.body.DOB,
+				gender: req.body.gender,
 				addressLine1: req.body.address1,
 				addressLine2: req.body.address2,
 				city: req.body.city,
@@ -640,8 +644,9 @@ app.get("/inbox", checkCookieMiddleware, checkValidUser, (req, res) => {
 			emailsData = Object.assign({}, emailData);
 			emailsID = Object.assign({}, emailID);
 			user = Object.assign({}, req.decodedClaims);
+			userProfile = Object.assign({}, doc.data());
 			return res.render("inbox", {
-				user,
+				user, userProfile,
 				emailsData,
 				emailsID,
 			});

@@ -50,9 +50,19 @@
 								<div class="card card-user">
 									<div class="card-content" style="min-height: 100px;">
 										<div>
-											<a class="profile-thumb" href="" style="width:10px; align-items:center;">
-												<img class="img-circle" src="/assets/img/photos/female.jpg" alt="" style="display:flex; max-width:100px; width:100%; margin:0 auto;"> <!-- female.jpg/male.jpg -->
-											</a>
+                                            <% if (  userProfile.gender  == 'Female' ) { %>
+                                                <a class="profile-thumb" href="" style="width:10px; align-items:center;">
+                                                    <img class="img-circle" src="/assets/img/photos/female.jpg" alt="" style="display:flex; max-width:100px; width:100%; margin:0 auto;"> <!-- female.jpg/male.jpg -->
+                                                </a> 
+                                            <% }else if (  userProfile.gender == 'Male' ) { %>
+                                                <a class="profile-thumb" href="" style="width:10px; align-items:center;">
+                                                    <img class="img-circle" src="/assets/img/photos/male.jpg" alt="" style="display:flex; max-width:100px; width:100%; margin:0 auto;"> <!-- female.jpg/male.jpg -->
+                                                </a>     
+                                            <% }else { %>
+                                                <a class="profile-thumb" href="" style="width:10px; align-items:center;">
+                                                    <img class="img-circle" src="/assets/img/photos/profileDefault.jpg" alt="" style="display:flex; max-width:100px; width:100%; margin:0 auto;"> <!-- female.jpg/male.jpg -->
+                                                </a> 
+                                            <% } %>
 										</div>
 										<br/>
 										<div class="author">

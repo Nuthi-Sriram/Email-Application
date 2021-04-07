@@ -193,9 +193,19 @@
 		<div class="mainwrapper">
 			<div class="leftpanel">
 				<div class="media profile-left">
-					<a class="pull-left profile-thumb" href="">
-						<img class="img-circle" src="/assets/img/photos/male.jpg" alt=""> <!-- female.jpg/male.jpg -->
-					</a>
+					<% if (  userProfile.gender  == 'Female' ) { %>
+						<a class="pull-left profile-thumb" href="">
+							<img class="img-circle" src="/assets/img/photos/female.jpg" alt="">
+						</a>
+					<% }else if (  userProfile.gender == 'Male' ) { %>
+						<a class="pull-left profile-thumb" href="">
+							<img class="img-circle" src="/assets/img/photos/male.jpg" alt="">
+						</a>    
+					<% }else { %>
+						<a class="pull-left profile-thumb" href="">
+							<img class="img-circle" src="/assets/img/photos/profileDefault.jpg" alt="">
+						</a>
+					<% } %>
 					<div class="media-body">
 						
 						<a data-toggle="collapse" data-target="#collapseExample" class="collapsed">
