@@ -531,6 +531,7 @@ app.get("/contacts", checkCookieMiddleware, checkValidUser, (req, res) => {
 			contactsData = Object.assign({}, contactData);
 			contactsID = Object.assign({}, contactID);
 			user = Object.assign({}, req.decodedClaims);
+			userProfile=user;
 			return res.render("contacts", {
 				user,
 				contactsData,
@@ -644,9 +645,9 @@ app.get("/inbox", checkCookieMiddleware, checkValidUser, (req, res) => {
 			emailsData = Object.assign({}, emailData);
 			emailsID = Object.assign({}, emailID);
 			user = Object.assign({}, req.decodedClaims);
-			userProfile = Object.assign({}, doc.data());
+			userProfile = user;
 			return res.render("inbox", {
-				user, userProfile,
+				user, 
 				emailsData,
 				emailsID,
 			});
