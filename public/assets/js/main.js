@@ -49,7 +49,13 @@ main = {
 			});
 		} else if (type == "passwordNoMatch") {
 			swal({
-				title: "Password don't match",
+				title: "Password doesn't match",
+				buttonsStyling: false,
+				confirmButtonClass: "btn btn-success btn-fill",
+			});
+		} else if (type == "otpNoMatch") {
+			swal({
+				title: "OTP doesn't match",
 				buttonsStyling: false,
 				confirmButtonClass: "btn btn-success btn-fill",
 			});
