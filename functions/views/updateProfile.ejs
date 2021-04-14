@@ -136,15 +136,19 @@
 														<label for="gender"
 															>Gender<span style="color:red">*</span></label
 														>
-														<input
-															type="text"
-															class="form-control border-input"
-															placeholder="Gender"
-															name="gender"
-															id="gender"
-															required
-															autocomplete="gender"
-														/>
+														<select id="gender" name="gender" class="form-control border-inpu" required>
+															<% if (userProfile.gender == 'Male') { %>
+																<option selected value="Male">Male</option>
+																<option value="Female">Female</option>
+															<% } else if (userProfile.gender == 'Female') { %>
+																<option value="Male">Male</option>
+																<option selected value="Female">Female</option>
+															<% } else { %>
+																<option disabled selected value>Gender</option>
+																<option value="Male">Male</option>
+																<option value="Female">Female</option>
+															<% } %>
+														</select>
 													</div>
 												</div>
 											</div>
