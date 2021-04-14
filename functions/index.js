@@ -545,6 +545,7 @@ app.get("/contacts", checkCookieMiddleware, checkValidUser, (req, res) => {
 });
 app.get("/addContact", checkCookieMiddleware, checkValidUser, (req, res) => {
 	user = Object.assign({}, req.decodedClaims);
+	userProfile=user;
 	res.render("addContact", {
 		user,
 	});
@@ -669,6 +670,7 @@ app.get("/readEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
 				return res.redirect("/login");
 			} else {
 				user = Object.assign({}, req.decodedClaims);
+				userProfile=user;
 				emailData = Object.assign({}, doc.data());
 				return res.render("readEmail", {
 					emailID: req.query.ID,
@@ -694,6 +696,7 @@ app.get("/readSentEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
 				return res.redirect("/login");
 			} else {
 				user = Object.assign({}, req.decodedClaims);
+				userProfile=user;
 				emailData = Object.assign({}, doc.data());
 				return res.render("readSentEmail", {
 					emailID: req.query.ID,
@@ -723,6 +726,7 @@ app.get(
 					return res.redirect("/login");
 				} else {
 					user = Object.assign({}, req.decodedClaims);
+					userProfile=user;
 					emailData = Object.assign({}, doc.data());
 					return res.render("readDraftedEmail", {
 						draftID: req.query.ID,
@@ -782,6 +786,7 @@ app.get("/sentEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
 			emailsData = Object.assign({}, emailData);
 			emailsID = Object.assign({}, emailID);
 			user = Object.assign({}, req.decodedClaims);
+			userProfile=user;
 			console.log(emailsData);
 			return res.render("sentEmails", {
 				user,
@@ -796,6 +801,7 @@ app.get("/sentEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
 });
 app.get("/composeEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
 	user = Object.assign({}, req.decodedClaims);
+	userProfile=user;
 	res.render("composeEmail", {
 		user,
 	});
@@ -856,6 +862,7 @@ app.get("/draftedEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
 			emailsData = Object.assign({}, emailData);
 			emailsID = Object.assign({}, emailID);
 			user = Object.assign({}, req.decodedClaims);
+			userProfile=user;
 			console.log(emailsData);
 			return res.render("draftedEmails", {
 				user,
