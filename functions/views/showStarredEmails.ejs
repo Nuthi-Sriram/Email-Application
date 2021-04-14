@@ -7,12 +7,12 @@
 		<td><%= emailsData[i].timestamp.toDate() %></td>
 		<td>
 			<a
-				href="/readSentEmail?ID=<%= emailsID[i] %>"
+				href="/readStarredEmail?ID=<%= emailsID[i] %>"
 				class="btn btn-simple btn-primary btn-icon edit"
-				><i class="ti-email"></i
+				><i class="ti-pencil-alt"></i
 			></a>
 			<a
-				href="/deleteSentEmail?ID=<%= emailsID[i] %>"
+				href="/deleteStarredEmail?ID=<%= emailsID[i] %>"
 				class="btn btn-simple btn-danger btn-icon edit"
 				><i class="ti-trash"></i
 			></a>

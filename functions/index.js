@@ -1057,6 +1057,36 @@ app.get("/viewProfile", checkCookieMiddleware, checkValidUser, (req, res) => {
 			res.redirect("/login");
 		});
 });
+app.get("/starredEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
+	var i = 0,
+		emailData = new Array(),
+		emailID = new Array();
+	db.collection("users")
+		.doc(req.decodedClaims.uid)
+		.collection("starredEmails")
+		.get()
+		.then((querySnapshot) => {
+			querySnapshot.forEach((childSnapshot) => {
+				emailID[i] = childSnapshot.id;
+				emailData[i] = childSnapshot.data();
+				i++;
+			});
+			emailsData = Object.assign({}, emailData);
+			emailsID = Object.assign({}, emailID);
+			user = Object.assign({}, req.decodedClaims);
+			userProfile=user;
+			console.log(emailsData);
+			return res.render("starredEmails", {
+				user,
+				emailsData,
+				emailsID,
+			});
+		})
+		.catch((err) => {
+			console.log("Error getting contacts", err);
+			res.redirect("/login");
+		});
+});
 
 /*=============================================>>>>>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Sent Emails | Email Application</title>
+		<title>Starred Emails | Email Application</title>
 		<%- include('components/meta') %> <%- include('components/link') %>
 	</head>
 
@@ -27,7 +27,7 @@
 								<span class="icon-bar bar3"></span>
 							</button>
 							<a class="navbar-brand" href="#datatable"
-								>Sent Emails</a
+								>Starred Emails</a
 							>
 						</div>
 						<div class="collapse navbar-collapse">
@@ -81,7 +81,8 @@
 												</tfoot> %>
 												<tbody style="box-shadow: 0 1px 0 0 #ddd;">
 													<%-
-													include('showSentEmails') %>
+													include('showStarredEmails')
+													%>
 												</tbody>
 											</table>
 										</div>
