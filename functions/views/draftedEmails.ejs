@@ -8,7 +8,7 @@
 	<body>
 		<div class="wrapper">
 			<%- include('components/sidebar') %>
-			<div class="main-panel">
+			<div class="main-panel" style="width: calc(100% - 230px);">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="navbar-minimize">
@@ -42,7 +42,7 @@
 					</div>
 				</nav>
 
-				<div class="content">
+				<div class="content" style="min-height: calc(100vh - 95px);">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
@@ -71,15 +71,15 @@
 														</th>
 													</tr>
 												</thead>
-												<tfoot>
+												<%# <tfoot>
 													<tr>
 														<th>Email Address</th>
 														<th>Subject</th>
 														<th>Date</th>
 														<th>Actions</th>
 													</tr>
-												</tfoot>
-												<tbody>
+												</tfoot> %>
+												<tbody style="box-shadow: 0 1px 0 0 #ddd;">
 													<%-
 													include('showDraftedEmails')
 													%>
