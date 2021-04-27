@@ -1147,13 +1147,6 @@ app.get("/starredEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
 		});
 });
 app.post("/starEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
-	obj = {
-		subject: req.body.subject,
-		message: req.body.message,
-		timestamp: req.body.time,
-		// to: req.body.receiverEmail,
-		// from: req.decodedClaims.email,
-	};
 	db.collection("users")
 		.doc(req.decodedClaims.uid)
 		.collection("starredEmails")
