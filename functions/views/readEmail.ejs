@@ -115,9 +115,15 @@
 														<%= emailData.message %>
 													</p>
 												</div>
-												<button type="button" onclick="markAsUnread()" class="btn btn-primary btn-wd">
-													Mark as unread
-												</button>
+												<div>
+													<button type="button" onclick="markAsUnread()" class="btn btn-primary btn-wd" style="float: left;">
+														Mark as unread
+													</button>
+													<button type="button" onclick="location.href='/composeEmail'" class="btn btn-primary btn-wd" style="float: right;">
+														Compose Email
+													</button>
+												</div>
+												
 											</div>
 										</fieldset>
 									</div>

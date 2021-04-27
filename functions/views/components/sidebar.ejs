@@ -44,12 +44,12 @@
 						<input type="search" class="form-control" placeholder="Search" />
 					</form> %>
 
-					<div class="btn-group btn-group-list btn-group-notification">
+					<%#  <div class="btn-group btn-group-list btn-group-notification">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-bell-o"></i>
 							<span class="badge">5</span>
 						</button>
-						<%# <div class="dropdown-menu pull-right">
+						<div class="dropdown-menu pull-right">
 							<a href="messages.html" class="link-right"><i class="fa fa-search"></i></a>
 							<h5>Notification</h5>
 							<ul class="media-list dropdown-list">
@@ -95,8 +95,8 @@
 							<div class="dropdown-footer text-center">
 								<a href="messages.html" class="link">See All Notifications</a>
 							</div>
-						</div><!-- dropdown-menu --> %>
-					</div><!-- btn-group -->
+						</div><!-- dropdown-menu --> 
+					</div><!-- btn-group --> %>
 
 					<%# <div class="btn-group btn-group-list btn-group-messages">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -171,6 +171,20 @@
 						</ul>
 						<!--<li><a href="/signOut"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>-->
 					</div><!-- btn-group --> %>
+					
+					<div class="btn-group btn-group-list btn-group-notification">
+						<button type="button" class="btn btn-default">
+							<%# <i class="fa fa-envelope"></i> %>
+							<a href="/inbox" style="text-decoration:none; color:white">Inbox</a>
+						</button>
+					</div><!-- btn-group -->
+
+					<div class="btn-group btn-group-list btn-group-notification">
+						<button type="button" class="btn btn-default">
+							<%# <i class="fa fa-address-book"></i> %>
+							<a href="/contacts" style="text-decoration:none; color:white">Contacts</a>
+						</button>
+					</div><!-- btn-group -->
 
 					<div class="btn-group btn-group-list btn-group-notification">
 						<button type="button" class="btn btn-default">
