@@ -97,16 +97,9 @@
 														<label for="countryCode"
 															>Country Code<span style="color:red">*</span></label
 														>
-														<input
-															type="tel"
-															name="countryCode"
-															class="form-control border-input"
-															id="countryCode"
-															required
-															pattern="^\+\d{1,3}$"
-															title="Should begin with + and must be a country code"
-															autocomplete="tel-country-code"
-														/>
+														<select id="countryCode" name="countryCode" class="form-control border-input" required>
+															<option selected value="+91">+91</option>
+														 </select>
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -138,6 +131,8 @@
 															type="text"
 															class="form-control border-input"
 															placeholder="First Name"
+															pattern="^[a-zA-Z0-9]+(?:[\s.,@'_-][,\s]?[a-zA-Z0-9]+)*$"
+															title="Can contain few special characters like ,.@'_- and space, Cannot start or end with special character"
 															name="firstName"
 															id="firstName"
 															required
@@ -155,6 +150,8 @@
 															type="text"
 															class="form-control border-input"
 															placeholder="Last Name"
+															pattern="^[a-zA-Z0-9]+(?:[\s.,@'_-][,\s]?[a-zA-Z0-9]+)*$"
+															title="Can contain few special characters like ,.@'_- and space, Cannot start or end with special character"
 															name="lastName"
 															id="lastName"
 															required
@@ -167,7 +164,7 @@
 														<label for="gender"
 															>Gender<span style="color:red">*</span></label
 														>
-														<select id="gender" name="gender" class="form-control border-inpu" required>
+														<select id="gender" name="gender" class="form-control border-input" required>
 															<% if (userProfile.gender == 'Male') { %>
 																<option selected value="Male">Male</option>
 																<option value="Female">Female</option>
@@ -196,6 +193,8 @@
 															class="form-control border-input"
 															name="address1"
 															required
+															pattern="^[#a-zA-Z0-9]+(?:[\s,-][,\s]?[a-zA-Z0-9]+)*$"
+															title="Can contain alphabets, numbers, special characters such as space,comma,-,#,: Cannot start or end with a special character"
 															placeholder="Address Line 1"
 															autocomplete="address-line1"
 															value="<%- userProfile.addressLine1 -%>"
@@ -215,6 +214,8 @@
 															type="text"
 															class="form-control border-input"
 															name="address2"
+															pattern="^[#a-zA-Z0-9]+(?:[\s,-][,\s]?[a-zA-Z0-9]+)*$"
+															title="Can contain alphabets, numbers, special characters such as space,comma,-,#,: Cannot start or end with a special character"
 															placeholder="Address Line 2"
 															autocomplete="address-line2"
 															value="<%- userProfile.addressLine2 -%>"
@@ -235,6 +236,8 @@
 															name="city"
 															required
 															placeholder="City"
+															pattern="^[a-zA-Z0-9]+(?:[\s-][a-zA-Z0-9]+)*$"
+															title="Can contain alphabets, numbers, special characters such as space,-,# Cannot start or end with a special character"
 															autocomplete="address-level2"
 															value="<%- userProfile.city -%>"
 														/>
@@ -245,16 +248,9 @@
 														<label for="country"
 															>Country<span style="color:red">*</span></label
 														>
-														<input
-															id="country"
-															type="text"
-															name="country"
-															class="form-control border-input"
-															placeholder="Country"
-															required
-															autocomplete="country-name"
-															value="<%- userProfile.country -%>"
-														/>
+														<select id="country" name="country" class="form-control border-input" required>
+															<option selected value="India">India</option>
+														 </select>
 													</div>
 												</div>
 												<div class="col-md-4">
@@ -271,6 +267,7 @@
 															required
 															autocomplete="postal-code"
 															pattern="^[0-9]{6}$"
+															title="6 digit postal code"
 															value="<%- userProfile.postalCode -%>"
 														/>
 													</div>
