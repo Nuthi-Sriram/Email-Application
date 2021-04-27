@@ -140,6 +140,13 @@
 												>
 													Save to Draft
 												</button>
+												<button
+													type="submit"
+													class="btn btn-danger"
+													id="trashButton"
+												>
+													Move to Trash
+												</button>
 											</div>
 										</div>
 									</form>
@@ -155,6 +162,9 @@
 		<script>
 			$("#draftButton").click(function () {
 				$("#allInputsFormValidation").attr("action", "/draftEmail");
+			});
+			$("#trashButton").click(function () {
+				$("#allInputsFormValidation").attr("action", "/trashEmail");
 			});
 			$("#submitButton").click(function () {
 				$("#allInputsFormValidation").attr("action", "/sendEmail");

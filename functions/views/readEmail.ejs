@@ -33,6 +33,7 @@
 						<div class="collapse navbar-collapse">
 							<form
 								class="navbar-form navbar-left navbar-search-form"
+								id="allInputsFormValidation"
 							>
 								<button
 									type="button"
@@ -87,6 +88,7 @@
 												<div class="col-sm-10">
 													<p
 														class="form-control-static"
+														id="time"
 													>
 														<%=
 														emailData.timestamp.toDate()
@@ -95,11 +97,13 @@
 												</div>
 												<label
 													class="col-sm-2 control-label"
+						
 													>Subject</label
 												>
 												<div class="col-sm-10">
 													<p
 														class="form-control-static"
+														id="subject"
 													>
 														<%= emailData.subject %>
 													</p>
@@ -111,6 +115,7 @@
 												<div class="col-sm-10">
 													<p
 														class="form-control-static"
+														id="message"
 													>
 														<%= emailData.message %>
 													</p>
@@ -119,6 +124,13 @@
 													<button type="button" onclick="markAsUnread()" class="btn btn-primary btn-wd" style="float: left;">
 														Mark as unread
 													</button>
+													<button
+													type="submit"
+													class="btn btn-warning"
+													id="starButton"
+												>
+													Star the Email
+												</button>
 													<button type="button" onclick="location.href='/composeEmail'" class="btn btn-primary btn-wd" style="float: right;">
 														Compose Email
 													</button>
@@ -139,6 +151,57 @@
 			</div>
 		</div>
 		<%- include('components/scripts') %>
+		<script>
+			$("#starButton").click(function () {
+				$("#allInputsFormValidation").attr("action", "/starEmail");
+			});
+			$("#trashButton").click(function () {
+				$("#allInputsFormValidation").attr("action", "/trashEmail");
+			});
+			$("#submitButton").click(function () {
+				$("#allInputsFormValidation").attr("action", "/sendEmail");
+			});
+			$("#receiverEmail").change(() => {
+				var payload = {
+					checkEmail: document.getElementById("receiverEmail").value,
+				};
+				fetch("/userIDQuery", {
+					method: "POST",
+					body: new URLSearchParams($.param(payload)),
+				})
+					.then((response) => {
+						if (response.status !== 200) {
+							alert(
+								"Looks like there was a problem. Status Code: " +
+									response.status
+							);
+							return;
+						}
+						response.text().then((data) => {
+							if (data.length == 28 || data.length == 36) {
+								document.getElementById(
+									"receiverUID"
+								).value = data;
+							} else if ((data = "User doesn't exist")) {
+								document.getElementById("receiverEmail").value =
+									"";
+								alert(
+									"User does not exist! Please recheck email."
+								);
+							} else {
+								document.getElementById("receiverEmail").value =
+									"";
+								alert(
+									"User does not exist! Please recheck email."
+								);
+							}
+						});
+					})
+					.catch((err) => {
+						alert("Fetch Error :-S", err);
+					});
+			});
+		</script>
 		<script>
 			$(() => {
 				setTimeout(() => {

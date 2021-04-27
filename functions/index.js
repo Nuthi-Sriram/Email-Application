@@ -978,6 +978,63 @@ app.post(
 			});
 	}
 );
+
+//trash option
+app.get("/trashedEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
+	var i = 0,
+		emailData = new Array(),
+		emailID = new Array();
+	db.collection("users")
+		.doc(req.decodedClaims.uid)
+		.collection("trashedEmails")
+		.get()
+		.then((querySnapshot) => {
+			querySnapshot.forEach((childSnapshot) => {
+				emailID[i] = childSnapshot.id;
+				emailData[i] = childSnapshot.data();
+				i++;
+			});
+			emailsData = Object.assign({}, emailData);
+			emailsID = Object.assign({}, emailID);
+			user = Object.assign({}, req.decodedClaims);
+			userProfile=user;
+			console.log(emailsData);
+			return res.render("trashedEmails", {
+				user,
+				emailsData,
+				emailsID,
+			});
+		})
+		.catch((err) => {
+			console.log("Error getting contacts", err);
+			res.redirect("/login");
+		});
+});
+app.post("/trashEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
+	obj = {
+		subject: req.body.subject,
+		message: req.body.message,
+		timestamp: admin.firestore.Timestamp.now().toDate(),
+		to: req.body.receiverEmail,
+		from: req.decodedClaims.email,
+	};
+	db.collection("users")
+		.doc(req.decodedClaims.uid)
+		.collection("trashedEmails")
+		.doc()
+		.set(obj)
+		.then(() => {
+			return res.redirect("/trashedEmails");
+		})
+		.catch((err) => {
+			console.log("Error ", err);
+			res.redirect("/login");
+		});
+});
+
+
+// end of transh option
+
 app.get(
 	"/deleteInboxEmail",
 	checkCookieMiddleware,
@@ -1057,6 +1114,8 @@ app.get("/viewProfile", checkCookieMiddleware, checkValidUser, (req, res) => {
 			res.redirect("/login");
 		});
 });
+
+//Starred Emails
 app.get("/starredEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
 	var i = 0,
 		emailData = new Array(),
@@ -1087,7 +1146,32 @@ app.get("/starredEmails", checkCookieMiddleware, checkValidUser, (req, res) => {
 			res.redirect("/login");
 		});
 });
+app.post("/starEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
+	obj = {
+		subject: req.body.subject,
+		message: req.body.message,
+		timestamp: req.body.time,
+		// to: req.body.receiverEmail,
+		// from: req.decodedClaims.email,
+	};
+	db.collection("users")
+		.doc(req.decodedClaims.uid)
+		.collection("starredEmails")
+		.doc()
+		.set(obj)
+		.then(() => {
+			return res.redirect("/starredEmails");
+		})
+		.catch((err) => {
+			console.log("Error ", err);
+			res.redirect("/login");
+		});
+});
 
+
+
+
+// End of Starred Emails
 /*=============================================>>>>>
 
 				= errors =
