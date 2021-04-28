@@ -1151,7 +1151,7 @@ app.post("/starEmail", checkCookieMiddleware, checkValidUser, (req, res) => {
 		.doc(req.decodedClaims.uid)
 		.collection("starredEmails")
 		.doc()
-		.set(obj)
+		.set(doc(req.query.ID))
 		.then(() => {
 			return res.redirect("/starredEmails");
 		})
